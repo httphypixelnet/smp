@@ -44,7 +44,8 @@ export default function LogViewer() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("https://api.lincolnsmp.xyz/api/testing")
+  	    const path = new URLSearchParams(window.location.search).get("d");
+        const response = await fetch(path === "testing" ? "https://api.lincolnsmp.xyz/api/testing" : `https://api.lincolnsmp.xyz/api/logs/${path}`)
         if (!response.ok) {
           throw new Error("Failed to fetch data")
         }
